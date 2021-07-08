@@ -1,0 +1,15 @@
+#line {
+   border-style: solid;
+   color:black;
+   position: relative;
+   top: 15px;
+   margin-left: 9px;
+}
+#mark{
+    border-style: solid;
+    color:black;
+    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+}
