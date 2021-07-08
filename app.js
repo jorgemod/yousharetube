@@ -17,6 +17,6 @@ io.on("connection", socket => {
 });
 
 //open port 
-httpServer.listen(3001, () => {
+httpServer.listen(8080, () => {
     console.log("escuchando en el puerto:3001");
 })
