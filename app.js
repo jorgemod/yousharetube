@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+//para obtener el puerto del servidor
+require('dotenv').config();
 
+const port = process.env.PORT;
 const httpServer = require('http').createServer(app);
 
 const io = require('socket.io')(httpServer);
@@ -18,6 +21,6 @@ io.on("connection", socket => {
 });
 
 //open port 
-httpServer.listen(8080, () => {
-    console.log("escuchando en el puerto:3001");
+httpServer.listen(port, () => {
+    console.log("escuchando en el puerto:",port);
 })
