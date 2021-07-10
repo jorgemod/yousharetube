@@ -17,6 +17,10 @@ socket.on('pausas',(info) =>{
     player.seekTo(info.time);
     player.pauseVideo();
 });
+socket.on('seekTos',(info) =>{
+    player.seekTo(info.time);
+    
+});
 
 
 
@@ -43,7 +47,11 @@ function onYouTubeIframeAPIReady() {
     playerVars: {
         'playsinline': 0,
         'controls': 0,
-        'rel': 0
+        'rel': 0,
+        'disablekb': 0,
+        'fs':0,
+        'rel':0
+
     },
     events: {
         'onReady': onPlayerReady,
@@ -79,7 +87,7 @@ function stopVideo() {
 vbar.addEventListener("input",(event)=>{
     // console.log(event);
     player.seekTo(vbar.value,true);
-    console.log(vbar.value)
+    socket.emit('seekTo', {'time': vbar.value});
 })
 
 function play(){

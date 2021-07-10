@@ -21,11 +21,14 @@ io.on("connection", socket => {
     socket.on('play', (evento)=>{
         console.log(evento);
         io.emit('plays', evento);
-    })
+    });
 
     socket.on('pause', (evento)=>{
         io.emit('pausas', evento);
-    })
+    });
+    socket.on('seekTo', (evento)=>{
+        io.emit('seekTos', evento);
+    });
     
 });
 
