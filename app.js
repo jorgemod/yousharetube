@@ -16,7 +16,16 @@ app.use(express.static(__dirname + '/public')); //directorio publico por el cual
 //configuracion de socket
 
 io.on("connection", socket => { 
-    console.log("Cliente conectado")
+    console.log("Cliente conectado");
+
+    socket.on('play', (evento)=>{
+        console.log(evento);
+        io.emit('plays', evento);
+    })
+
+    socket.on('pause', (evento)=>{
+        io.emit('pausas', evento);
+    })
     
 });
 

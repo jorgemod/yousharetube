@@ -1,3 +1,28 @@
+// socket io
+const socket = io();
+socket.on('connect',()=>{
+    console.log("conectado");
+    
+});
+socket.on('disconnect',()=>{
+    console.log("Desconectado del server");
+    
+});
+
+socket.on('plays',(info) =>{
+    player.seekTo(info.time);
+    player.playVideo();
+});
+socket.on('pausas',(info) =>{
+    player.seekTo(info.time);
+    player.pauseVideo();
+});
+
+
+
+
+
+
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 
@@ -14,7 +39,7 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
     height: '490',
     width: '640',
-    videoId: 'bqwLVQ7uv1c',
+    videoId: 'tRdu-vB2Tkg',
     playerVars: {
         'playsinline': 0,
         'controls': 0,
@@ -29,7 +54,7 @@ function onYouTubeIframeAPIReady() {
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-    event.target.playVideo();
+    // event.target.playVideo();
     console.log(player.getDuration());
     vbar.max = player.getDuration();
 
@@ -59,11 +84,17 @@ vbar.addEventListener("input",(event)=>{
 
 function play(){
     player.playVideo();
+    socket.emit('play', {'time':Math.round(player.getCurrentTime())});
 }
 function pausa(){
     player.pauseVideo();
+    socket.emit('pause',{'time':Math.round(player.getCurrentTime())});
     // player.getCurrentTime()
 }
+
+
+
+
 
 
 //progress video 
