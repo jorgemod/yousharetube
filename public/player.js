@@ -1,3 +1,12 @@
+// control del link de youtube
+const searchParams = new URLSearchParams( window.location.search); //obtener el url
+const link = searchParams.get('link'); //obtener el parametro escritorio
+let linkss= link.split('=');
+console.log(linkss);
+
+
+
+
 // socket io
 const socket = io();
 socket.on('connect',()=>{
@@ -43,7 +52,7 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
     height: '490',
     width: '640',
-    videoId: 'tRdu-vB2Tkg',
+    videoId: linkss[1],
     playerVars: {
         'playsinline': 0,
         'controls': 0,
